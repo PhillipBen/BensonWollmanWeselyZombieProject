@@ -17,7 +17,17 @@ public class PetDatabase {
         petList.add(pet);
     }
     
+    public void Update(int index, Pet newPet) {
+        petList.remove(index);
+        petList.add(index, newPet);
+    }
+    
+    public void Remove(int index) {
+        petList.remove(index);
+    }
+    
     public void PrintDatabase() {
+        //Print the petList from this class
         System.out.println("");
         System.out.println("+----------------------+");
         System.out.println("| ID | NAME      | AGE |");
@@ -31,6 +41,7 @@ public class PetDatabase {
     }
     
     public void PrintDatabase(ArrayList<Pet> arrayList) {
+        //Print an input arrayList, given it is an ArrayList that contains Pet(s).
         System.out.println("");
         System.out.println("+----------------------+");
         System.out.println("| ID | NAME      | AGE |");
@@ -44,12 +55,13 @@ public class PetDatabase {
     }
     
     public void SearchDatabase(int searchCase, String searchString) {
+        //Searches the petList for a specific name or age and prints all found results.
         //searchCase: 0 = name, 1 = age
         ArrayList<Pet> tempPetList = new ArrayList<>();
         if(searchCase == 0) {
             //name
             for (int i = 0; i < petList.size(); i++) 
-                if (petList.get(i).GetName().equals(searchString))
+                if (petList.get(i).GetName().toLowerCase().equals(searchString.toLowerCase()))
                     tempPetList.add(petList.get(i));
         }else {
             //age
