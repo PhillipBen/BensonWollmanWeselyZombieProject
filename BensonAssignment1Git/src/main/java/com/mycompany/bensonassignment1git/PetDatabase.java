@@ -29,4 +29,34 @@ public class PetDatabase {
         System.out.println("" + petList.size() + " rows in set.");
         System.out.println("");
     }
+    
+    public void PrintDatabase(ArrayList<Pet> arrayList) {
+        System.out.println("");
+        System.out.println("+----------------------+");
+        System.out.println("| ID | NAME      | AGE |");
+        System.out.println("+----------------------+");
+        for (int i = 0; i < arrayList.size(); i++) {
+            System.out.printf("%-5s%-12s%-6s%-1s%n", "| " + i, "| " + arrayList.get(i).GetName(), "| " + arrayList.get(i).GetAge(), "|"); 
+        }
+        System.out.println("+----------------------+");
+        System.out.println("" + arrayList.size() + " rows in set.");
+        System.out.println("");
+    }
+    
+    public void SearchDatabase(int searchCase, String searchString) {
+        //searchCase: 0 = name, 1 = age
+        ArrayList<Pet> tempPetList = new ArrayList<>();
+        if(searchCase == 0) {
+            //name
+            for (int i = 0; i < petList.size(); i++) 
+                if (petList.get(i).GetName().equals(searchString))
+                    tempPetList.add(petList.get(i));
+        }else {
+            //age
+            for (int i = 0; i < petList.size(); i++) 
+                if (petList.get(i).GetAge() == Integer.parseInt(searchString))
+                    tempPetList.add(petList.get(i));
+        }
+        PrintDatabase(tempPetList);
+    }
 }
