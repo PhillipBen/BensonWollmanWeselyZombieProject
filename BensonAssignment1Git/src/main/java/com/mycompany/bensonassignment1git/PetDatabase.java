@@ -16,7 +16,15 @@ public class PetDatabase implements Serializable{
     ArrayList<Pet> petList = new ArrayList<>();
     
     public void Add(Pet pet) {
-        petList.add(pet);
+        try {  
+            if (petList.size() < 5) {
+                petList.add(pet);
+            }else {
+                throw new Exception("Invalid add. Pet List size greater than or equal to five."); 
+            }
+        }catch(Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
     }
     
     public void Update(int index, Pet newPet) {
@@ -25,7 +33,11 @@ public class PetDatabase implements Serializable{
     }
     
     public void Remove(int index) {
-        petList.remove(index);
+        if(index >= 0 && index < petList.size()) {
+            petList.remove(index);
+        }else {
+            System.out.println("That index does not exist!");
+        }
     }
     
     public void PrintDatabase() {
@@ -84,7 +96,7 @@ public class PetDatabase implements Serializable{
             fos.close();
             return true;
         }catch(IOException e) {
-            e.getMessage();
+            System.out.println("ERROR: " + e.getMessage());
             return false;
         }
     }
@@ -101,7 +113,7 @@ public class PetDatabase implements Serializable{
             return PD;
         }catch(IOException | ClassNotFoundException e) {
             System.out.println("Failed to load file");
-            e.getMessage();
+            System.out.println("ERROR: " + e.getMessage());
             return null;
         }
     }

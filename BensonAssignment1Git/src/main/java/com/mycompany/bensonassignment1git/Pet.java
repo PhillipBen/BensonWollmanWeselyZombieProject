@@ -4,6 +4,7 @@
  */
 package com.mycompany.bensonassignment1git;
 import java.io.Serializable; 
+import java.io.*;
 
 /**
  *
@@ -14,8 +15,8 @@ public class Pet implements Serializable{
     int age;
     
     public Pet(String name, int age) {
-        this.name = name;
-        this.age = age;
+        SetName(name);
+        SetAge(age);
     }
     
     public void SetName(String name) {
@@ -27,7 +28,15 @@ public class Pet implements Serializable{
     }
     
     public void SetAge(int age) {
-        this.age = age;
+        try {  
+            if (age >= 1 && age <= 20) {
+                this.age = age;
+            }else {
+                throw new Exception("Invalid age. Age must be between 1 and 20."); 
+            }
+        }catch(Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
     }
     
     public int GetAge() {

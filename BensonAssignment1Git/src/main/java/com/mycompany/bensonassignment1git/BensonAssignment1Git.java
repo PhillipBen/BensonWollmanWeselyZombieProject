@@ -49,8 +49,20 @@ public class BensonAssignment1Git {
                     //Add Pet
                     System.out.println("add pet (name, age):");
                     String userStrInput = scnr.nextLine();
-                    Pet tempPet = new Pet(userStrInput.split(" ")[0], Integer.parseInt(userStrInput.split(" ")[1]));
-                    PD.Add(tempPet);
+                    String[] userStrInputList = userStrInput.split(" ");
+                    if (userStrInputList.length == 2) {
+                        //Input validation to make sure only two items were entered
+                        String tempPetName = userStrInputList[0];
+                        int tempPetAge = Integer.parseInt(userStrInputList[1]);
+                        Pet tempPet = new Pet(tempPetName, tempPetAge);
+                        if(tempPet.GetAge() != 0) {
+                            //Age validation to make sure the correct age was entered
+                            PD.Add(tempPet);
+                        }
+                    }else {
+                        System.out.println("ERROR: Invalid Input length.");
+                    }
+                    
                 }
                 case 3 -> {
                     //Update a pet
@@ -91,7 +103,7 @@ public class BensonAssignment1Git {
                         String userStrInput = scnr.nextLine();
                         PD = PD.load(userStrInput);
                     }catch(IOException e) {
-                        e.getMessage();
+                        System.out.println("ERROR: " + e.getMessage());
                     }
                 }
                 default -> {
