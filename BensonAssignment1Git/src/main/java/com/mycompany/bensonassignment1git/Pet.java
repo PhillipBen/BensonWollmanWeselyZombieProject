@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.bensonassignment1git;
+import java.io.Serializable; 
 
 /**
  *
  * @author Phillip
  */
-public class Pet {
+public class Pet implements Serializable{
     String name;
     int age;
     

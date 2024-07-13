@@ -5,12 +5,14 @@
 package com.mycompany.bensonassignment1git;
 
 import java.util.ArrayList;
+import java.io.Serializable; 
+import java.io.*;
 
 /**
  *
  * @author Phillip
  */
-public class PetDatabase {
+public class PetDatabase implements Serializable{
     ArrayList<Pet> petList = new ArrayList<>();
     
     public void Add(Pet pet) {
@@ -70,5 +72,37 @@ public class PetDatabase {
                     tempPetList.add(petList.get(i));
         }
         PrintDatabase(tempPetList);
+    }
+    
+    public boolean save(PetDatabase testSet, String filename) {
+        //Source: https://www.geeksforgeeks.org/serializable-interface-in-java/
+        try {
+            FileOutputStream fos = new FileOutputStream(filename);
+            ObjectOutputStream oos = new ObjectOutputStream(fos); 
+            oos.writeObject(testSet); 
+            oos.close();
+            fos.close();
+            return true;
+        }catch(IOException e) {
+            e.getMessage();
+            return false;
+        }
+    }
+    
+    public PetDatabase load(String filename) throws IOException {
+        //Source: https://www.geeksforgeeks.org/serializable-interface-in-java/
+        try {
+            FileInputStream fis = new FileInputStream(filename); 
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            PetDatabase PD = (PetDatabase)ois.readObject();
+            fis.close();
+            ois.close();
+            System.out.println("Test loaded successfully!");
+            return PD;
+        }catch(IOException | ClassNotFoundException e) {
+            System.out.println("Failed to load file");
+            e.getMessage();
+            return null;
+        }
     }
 }

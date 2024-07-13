@@ -5,6 +5,7 @@
 package com.mycompany.bensonassignment1git;
 
 import java.util.Scanner;
+import java.io.*;
 
 /**
  *
@@ -23,7 +24,7 @@ public class BensonAssignment1Git {
         int userInput = -1;
         
         //Main user input method
-        while(userInput != 7) {
+        while(userInput != 9) {
             //User input info
             System.out.println("What would you like to do?");
             System.out.println("1) View all pets");
@@ -32,7 +33,9 @@ public class BensonAssignment1Git {
             System.out.println("4) Remove an existing pet");
             System.out.println("5) Search pets by name");
             System.out.println("6) Search pets by age");
-            System.out.println("7) Exit program");
+            System.out.println("7) Save current PetDatabase");
+            System.out.println("8) Load a PetDatabase");
+            System.out.println("9) Exit program");
             System.out.println("Your choice:");
             
             userInput = choiseScnr.nextInt();
@@ -74,6 +77,22 @@ public class BensonAssignment1Git {
                     //Search for pet(s) with a specific age
                     System.out.println("Enter a age to search:");
                     PD.SearchDatabase(1, scnr.nextLine());
+                }
+                case 7 -> {
+                    //Save the PetDatabase to a file
+                    System.out.println("Enter a file name to save this database as:");
+                    String userStrInput = scnr.nextLine();
+                    PD.save(PD, userStrInput);
+                }
+                case 8 -> {
+                    //Load the PetDatabase from a file
+                    try {  
+                        System.out.println("Enter a file name to load the database from:");
+                        String userStrInput = scnr.nextLine();
+                        PD = PD.load(userStrInput);
+                    }catch(IOException e) {
+                        e.getMessage();
+                    }
                 }
                 default -> {
                     //All other inputs
