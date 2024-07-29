@@ -13,4 +13,9 @@ public class Zombie extends Character{
     public Zombie(double health, double attack) {
         super(health, attack);
     }
+    
+    public Zombie() {
+        this.health = 80;
+        this.attack = 10;
+    }
 }
