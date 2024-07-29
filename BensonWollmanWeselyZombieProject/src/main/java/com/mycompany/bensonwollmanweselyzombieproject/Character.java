@@ -20,6 +20,11 @@ public class Character {
         this.health = health;
         this.attack = attack;
     }
+
+    public Character() {
+        this.health = 100;
+        this.attack = 10;
+    }
     
     /**
     * Check answer.
