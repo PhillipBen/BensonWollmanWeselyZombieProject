@@ -13,4 +13,8 @@ public class Survivor extends Character{
     public Survivor(double health, double attack) {
         super(health, attack);
     }
+    public Survivor() {
+        this.health = 100;
+        this.attack = 10;
+    }
 }
