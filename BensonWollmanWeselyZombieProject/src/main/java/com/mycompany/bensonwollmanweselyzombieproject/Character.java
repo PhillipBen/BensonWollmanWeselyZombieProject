@@ -9,7 +9,10 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  * @author Phillip
  */
 public class Character {
-    
+    /*
+    * ints will work but opted for double if/when future versions of the game have more
+    * complex attacking sitations where you'll need more granularity into health.
+    */
     protected double health;
     protected double attack;
     
