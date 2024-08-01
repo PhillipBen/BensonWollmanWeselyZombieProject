@@ -50,6 +50,10 @@ public class Character {
     public boolean is_alive() {
         return this.health > 0;
     }
+
+    public double getHealth() {
+        return this.health;
+    }
     
     
     /**
