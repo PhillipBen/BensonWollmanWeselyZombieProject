@@ -10,12 +10,12 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  */
 public class Zombie extends Character{
     
-    public Zombie(double health, double attack) {
-        super(health, attack);
+    public Zombie(double health, double attack, String type, int id) {
+        super(health, attack, type, id);
     }
     
-    public Zombie() {
-        this.health = 80;
-        this.attack = 10;
-    }
+//    public Zombie() {
+//        this.health = 80;
+//        this.attack = 20;
+//    }
 }

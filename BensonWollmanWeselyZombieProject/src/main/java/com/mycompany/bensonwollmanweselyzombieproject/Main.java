@@ -6,6 +6,7 @@ package com.mycompany.bensonwollmanweselyzombieproject;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
 
 /**
  *
@@ -18,40 +19,61 @@ public class Main {
     public static void main() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of zombies: ");
-        int numberOfZombies = scanner.nextInt();
-        System.out.print("Enter the number of survivors: ");
-        int numberOfSurvivors = scanner.nextInt();
 
-        Zombie[] zombies = new Zombie[numberOfZombies];
-        Survivor[] survivors = new Survivor[numberOfSurvivors];
+        System.out.print("Enter the number of Common Infected zombies: ");
+        int numberOfCommonInfected = scanner.nextInt();
+        System.out.print("Enter the number of Tank zombies: ");
+        int numberOfTanks = scanner.nextInt();
 
-        for (int i = 0; i < numberOfZombies; i++) {
-            zombies[i] = new Zombie();
+        System.out.print("Enter the number of Civilian survivors: ");
+        int numberOfCivilians = scanner.nextInt();
+        System.out.print("Enter the number of Scientist survivors: ");
+        int numberOfScientists = scanner.nextInt();
+        System.out.print("Enter the number of Soldier survivors: ");
+        int numberOfSoldiers = scanner.nextInt();
+
+        List<Zombie> zombies = new ArrayList<>();
+        List<Survivor> survivors = new ArrayList<>();
+
+        for (int i = 0; i < numberOfCommonInfected; i++) {
+            zombies.add(new CommonInfected(i));
         }
-        for (int i = 0; i < numberOfSurvivors; i++) {
-            survivors[i] = new Survivor();
+        for (int i = 0; i < numberOfTanks; i++) {
+            zombies.add(new Tank(i));
+        }
+
+
+        for (int i = 0; i < numberOfCivilians; i++) {
+            survivors.add(new Civilian(i));
+        }
+        for (int i = 0; i < numberOfScientists; i++) {
+            survivors.add(new Scientist(i));
+        }
+        for (int i = 0; i < numberOfSoldiers; i++) {
+            survivors.add(new Soldier(i));
         }
 
         int zombieIndex = 0;
         int survivorIndex = 0;
 
-        while (zombieIndex < numberOfZombies && survivorIndex < numberOfSurvivors) {
-            Survivor survivor = survivors[survivorIndex];
-            Zombie zombie = zombies[zombieIndex];
+        while (zombieIndex < zombies.size() && survivorIndex < survivors.size()) {
+            Survivor survivor = survivors.get(survivorIndex);
+            Zombie zombie = zombies.get(zombieIndex);
 
             while (zombie.is_alive() && survivor.is_alive()) {
                 survivor.attack_enemy(zombie);
-                System.out.println("Zombie health after attack: " + zombie.getHealth());
+                //System.out.println("Zombie health after attack: " + zombie.getHealth());
                 if (!zombie.is_alive()) {
-                    System.out.println("Hoorah! Zombie has died!");
+                    System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + zombie.getType() + " " + zombie.getId());
+                    // System.out.println("Hoorah! Zombie has died!");
                     break;
                 }
 
                 zombie.attack_enemy(survivor);
-                System.out.println("Survivor health after attack: " + survivor.getHealth());
+                //System.out.println("Survivor health after attack: " + survivor.getHealth());
                 if (!survivor.is_alive()) {
-                    System.out.println("Sad day, rest in peace soldier.");
+                    System.out.println(zombie.getType() + " " + zombie.getId() + " killed " + survivor.getType() + " " + survivor.getId());
+                    //System.out.println("Sad day, rest in peace soldier.");
                     break;
                 }
             }
@@ -62,14 +84,19 @@ public class Main {
                 survivorIndex++;
             }
         }
-        if (survivorIndex < numberOfSurvivors) {
-            System.out.println("We have " + numberOfSurvivors + " survivors trying to make it to safety.");
-            System.out.println("But there are " + numberOfZombies + " zombies waiting for them.");
-            System.out.println("It seems " + (numberOfSurvivors - survivorIndex) + " have made it to safety.");
+//        if (survivorIndex < survivors.size()) {
+//            System.out.println("We have " + survivors.size() + " survivors trying to make it to safety.");
+//            System.out.println("But there are " + zombies.size() + " zombies waiting for them.");
+//            System.out.println("It seems " + (survivors.size() - survivorIndex) + " have made it to safety.");
+//        } else {
+//            System.out.println("We have " + survivors.size() + " survivors trying to make it to safety.");
+//            System.out.println("But there are " + zombies.size() + " zombies waiting for them.");
+//            System.out.println("It seems the zombies have defeated all the survivors.");
+//        }
+        if (survivorIndex < survivors.size()) {
+            System.out.println((survivors.size() - survivorIndex) + " survivors made it to safety.");
         } else {
-            System.out.println("We have " + numberOfSurvivors + " survivors trying to make it to safety.");
-            System.out.println("But there are " + numberOfZombies + " zombies waiting for them.");
-            System.out.println("It seems the zombies have defeated all the survivors.");
+            System.out.println("None of the survivors made it.");
         }
     }
 }

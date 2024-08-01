@@ -10,8 +10,9 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  */
 public class Scientist extends Survivor{
     
-    public Scientist() {
-        super(20, 2);
+    public Scientist(int id) {
+
+        super(20, 2, "Scientist", id);
     }
     
     

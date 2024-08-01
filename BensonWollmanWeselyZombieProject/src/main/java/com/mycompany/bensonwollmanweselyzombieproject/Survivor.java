@@ -10,11 +10,11 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  */
 public class Survivor extends Character{
     
-    public Survivor(double health, double attack) {
-        super(health, attack);
+    public Survivor(double health, double attack, String type, int id) {
+        super(health, attack, type, id);
     }
-    public Survivor() {
-        this.health = 100;
-        this.attack = 10;
-    }
+//    public Survivor() {
+//        this.health = 100;
+//        this.attack = 10;
+//    }
 }
