@@ -43,14 +43,14 @@ public class Main {
         }
 
 
-        for (int i = 0; i < numberOfCivilians; i++) {
-            survivors.add(new Civilian(i));
+        for (int i = 0; i < numberOfSoldiers; i++) {
+            survivors.add(new Soldier(i));
         }
         for (int i = 0; i < numberOfScientists; i++) {
             survivors.add(new Scientist(i));
         }
-        for (int i = 0; i < numberOfSoldiers; i++) {
-            survivors.add(new Soldier(i));
+        for (int i = 0; i < numberOfCivilians; i++) {
+            survivors.add(new Civilian(i));
         }
 
         int zombieIndex = 0;
