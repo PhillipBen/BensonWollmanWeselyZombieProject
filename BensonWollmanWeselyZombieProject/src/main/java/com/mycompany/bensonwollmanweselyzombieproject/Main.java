@@ -8,37 +8,23 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Phillip
- * 
+ * @author Phillip Chris Dustin
+ *
  * Netbeans: View Function tooltips with Control + Shift + Space.
  */
 public class Main {
     
     public static void main() {
-
-        /*
-        //Initialize Humans
-        Scientist human1 = new Scientist();
-        
-        //Initialize Zombies
-        CommonInfected zombie1 = new CommonInfected();
-        
-        //Start Fight
-        human1.attack_enemy(zombie1);
-        zombie1.attack_enemy(human1);
-         */
-
-
         /**
          * Generate number of each unit and display to user
          */
-        int numberOfHumans = (int)((Math.random() * 10) + 1);
+        int numberOfSurvivors = (int)((Math.random() * 10) + 1);
         int numberOfZombies = (int)((Math.random() * 10) + 1);
 
-        if (numberOfHumans > 1) {
-            System.out.println("We have " + numberOfHumans + " survivors trying to make it to safety.");
+        if (numberOfSurvivors > 1) {
+            System.out.println("We have " + numberOfSurvivors + " survivors trying to make it to safety.");
         } else {
-            System.out.println("We have " + numberOfHumans + " survivor trying to make it to safety.");
+            System.out.println("We have " + numberOfSurvivors + " survivor trying to make it to safety.");
         }
         if (numberOfZombies > 1) {
             System.out.println("But there are " + numberOfZombies + " zombies waiting for them.");
@@ -50,16 +36,14 @@ public class Main {
          * respective ArrayList
          */
         ArrayList<Zombie> zombieArrayList = new ArrayList<>();
-        for (int x = 0; x < numberOfZombies; x++) {
+        for (int y = 0; y < numberOfZombies; y++) {
             zombieArrayList.add(new Zombie());
         }
 
         ArrayList<Survivor> survivorArrayList = new ArrayList<>();
-        for (int x = 0; x < numberOfHumans; x++) {
+        for (int x = 0; x < numberOfSurvivors; x++) {
             survivorArrayList.add(new Survivor());
         }
-
-
         /**
          * Battle
          */
@@ -70,21 +54,19 @@ public class Main {
             for (int x = 0; x < survivorArrayList.size(); x++) {
                 for (int y = 0; y < zombieArrayList.size(); y++) {
                     survivorArrayList.get(x).attack_enemy(zombieArrayList.get(y));
-                    if (zombieArrayList.get(y).health < 1) {
+                    if (!zombieArrayList.get(y).is_alive()) {
                         zombieArrayList.remove(y);
-                        //System.out.println("Zombie " + y + " has been defeated");
                     }
                 }
             }
             /**
              * Zombies attack, remove defeated survivors from survivorArrayList
              */
-            for (int x = 0; x < zombieArrayList.size(); x++) {
-                for (int y = 0; y < survivorArrayList.size(); y++) {
-                    zombieArrayList.get(x).attack_enemy(survivorArrayList.get(y));
-                    if (survivorArrayList.get(y).health < 1) {
-                        survivorArrayList.remove(y);
-                        //System.out.println("Survivor " + y + " has been defeated");
+            for (int y = 0; y < zombieArrayList.size(); y++) {
+                for (int x = 0; x < survivorArrayList.size(); x++) {
+                    zombieArrayList.get(y).attack_enemy(survivorArrayList.get(x));
+                    if (!survivorArrayList.get(x).is_alive()) {
+                        survivorArrayList.remove(x);
                     }
                 }
             }
@@ -94,8 +76,5 @@ public class Main {
         } else {
             System.out.println("It seems " + survivorArrayList.size() + " made it to safety.");
         }
-
-
-
     }
 }
