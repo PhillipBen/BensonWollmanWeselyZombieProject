@@ -25,39 +25,39 @@ public class Main {
         ArrayList<Survivor> survivorArrayList = new ArrayList<>();
         ArrayList<Zombie> zombieArrayList = new ArrayList<>();
         
+        //Simply for the initial print statements
+        int numScientist = randGen.nextInt(1,4);
+        int numCivilian = randGen.nextInt(1,4);
+        int numSoldier = randGen.nextInt(1,4);
+        
+        int numCommonInfected = randGen.nextInt(1,4);
+        int numTank = randGen.nextInt(1,4);
+        
         //Survivors: Scientist, Civilian, Soldier
-        for(int i = 0; i < randGen.nextInt(1,4); i++) {
-            survivorArrayList.add(new Scientist(survivorArrayList.size()));
+        for(int i = 0; i < numScientist; i++) {
+            survivorArrayList.add(new Scientist(i));
         }
-        for(int i = 0; i < randGen.nextInt(1,4); i++) {
-            survivorArrayList.add(new Civilian(survivorArrayList.size()));
+        for(int i = 0; i < numCivilian; i++) {
+            survivorArrayList.add(new Civilian(i));
         }
-        for(int i = 0; i < randGen.nextInt(1,4); i++) {
-            survivorArrayList.add(new Soldier(survivorArrayList.size()));
+        for(int i = 0; i < numSoldier; i++) {
+            survivorArrayList.add(new Soldier(i));
         }
         
         //Zombies: CommonInfected, Tank
-        for(int i = 0; i < randGen.nextInt(1,4); i++) {
-            zombieArrayList.add(new CommonInfected(zombieArrayList.size()));
+        for(int i = 0; i < numCommonInfected; i++) {
+            zombieArrayList.add(new CommonInfected(i));
         }
-        for(int i = 0; i < randGen.nextInt(1,4); i++) {
-            zombieArrayList.add(new Tank(zombieArrayList.size()));
+        for(int i = 0; i < numTank; i++) {
+            zombieArrayList.add(new Tank(i));
         }
         
         
         /**
          * Initial print statements displaying number of survivors and zombies to the user.
          */
-        if (survivorArrayList.size() > 1) {
-            System.out.println("We have " + survivorArrayList.size() + " survivors trying to make it to safety.");
-        } else {
-            System.out.println("We have " + survivorArrayList.size() + " survivor trying to make it to safety.");
-        }
-        if (zombieArrayList.size() > 1) {
-            System.out.println("But there are " + zombieArrayList.size() + " zombies waiting for them.");
-        } else {
-            System.out.println("But there is " + zombieArrayList.size() + " zombie waiting for them.");
-        }
+        System.out.println("We have " + survivorArrayList.size() + " survivors trying to make it to safety (" + numScientist + " scientist, " + numCivilian + " civilian, " + numSoldier + " soldiers)");
+        System.out.println("But there are " + zombieArrayList.size() + " zombies waiting for them (" + numCommonInfected + " common infected, " + numTank + " tanks)");
         
         
         /**
