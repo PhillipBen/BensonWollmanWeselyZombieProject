@@ -40,7 +40,7 @@ public class Character {
     */
     public void take_damage(double damage) {
         this.health -= damage;
-        System.out.println(get_entity() + " took " + damage + " damage.");
+        // System.out.println(get_entity() + " took " + damage + " damage.");
     }
     
     /**
