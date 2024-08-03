@@ -9,13 +9,11 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  * @author Phillip
  */
 public class Zombie extends Character{
-    
-    public Zombie(double health, double attack) {
-        super(health, attack);
+    public Zombie(double health, double attack, String type, int id) {
+        super(health, attack, type, id);
     }
-    
-    public Zombie() {
-        this.health = 80;
-        this.attack = 10;
+
+    public Zombie(int id) {
+        super(75, 10, "Zombie", id);
     }
 }

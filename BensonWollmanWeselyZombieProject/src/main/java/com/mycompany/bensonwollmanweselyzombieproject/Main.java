@@ -37,12 +37,12 @@ public class Main {
          */
         ArrayList<Zombie> zombieArrayList = new ArrayList<>();
         for (int y = 0; y < numberOfZombies; y++) {
-            zombieArrayList.add(new Zombie());
+            zombieArrayList.add(new Zombie(y));
         }
 
         ArrayList<Survivor> survivorArrayList = new ArrayList<>();
         for (int x = 0; x < numberOfSurvivors; x++) {
-            survivorArrayList.add(new Survivor());
+            survivorArrayList.add(new Survivor(x));
         }
         /**
          * Battle
