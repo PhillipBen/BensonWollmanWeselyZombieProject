@@ -15,10 +15,13 @@ public class Character {
     */
     protected double health;
     protected double attack;
-    
-    public Character(double health, double attack) {
+    protected String type;
+    protected int id;
+    public Character(double health, double attack, String type, int id) {
         this.health = health;
         this.attack = attack;
+        this.type = type;
+        this.id = id;
     }
 
     public Character() {
@@ -64,5 +67,12 @@ public class Character {
         }else {
             return "NULL";
         }
+    }
+    public String getType() {
+        return this.type;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }
