@@ -9,10 +9,8 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  * @author Phillip
  */
 public class CommonInfected extends Zombie{
-    
-    public CommonInfected() {
-        super(30, 5);
+    public CommonInfected(int id) {
+
+        super(30, 5, "CommonInfected", id);
     }
-    
-    
 }

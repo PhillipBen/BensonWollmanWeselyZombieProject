@@ -9,13 +9,24 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  * @author Phillip
  */
 public class Character {
-    
+    /*
+    * ints will work but opted for double if/when future versions of the game have more
+    * complex attacking sitations where you'll need more granularity into health.
+    */
     protected double health;
     protected double attack;
-    
-    public Character(double health, double attack) {
+    protected String type;
+    protected int id;
+    public Character(double health, double attack, String type, int id) {
         this.health = health;
         this.attack = attack;
+        this.type = type;
+        this.id = id;
+    }
+
+    public Character() {
+        this.health = 100;
+        this.attack = 10;
     }
     
     /**
@@ -32,7 +43,11 @@ public class Character {
     */
     public void take_damage(double damage) {
         this.health -= damage;
-        System.out.println(get_entity() + " took " + damage + " damage.");
+        // System.out.println(get_entity() + " took " + damage + " damage.");
+    }
+    
+    public void death_statement(Character attacker) {
+        System.out.println("" + attacker.getType() + " " + attacker.getId() + " killed " + this.type + " " + this.id);
     }
     
     /**
@@ -56,5 +71,12 @@ public class Character {
         }else {
             return "NULL";
         }
+    }
+    public String getType() {
+        return this.type;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }
