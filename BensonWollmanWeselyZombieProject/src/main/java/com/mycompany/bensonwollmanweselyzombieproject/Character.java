@@ -46,6 +46,10 @@ public class Character {
         // System.out.println(get_entity() + " took " + damage + " damage.");
     }
     
+    public void death_statement(Character attacker) {
+        System.out.println("" + attacker.getType() + " " + attacker.getId() + " killed " + this.type + " " + this.id);
+    }
+    
     /**
     * Check answer.
     * @return True if health is greater than 0.
