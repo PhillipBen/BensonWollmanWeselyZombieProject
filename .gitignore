@@ -1,4 +1,3 @@
-/BensonWollmanWeselyZombieProject/target/
-/Benson2BWatch/target/
-/PhillipBenson2BWatch/target/
-/PhillipBenson2BWatch/nbproject/
+# IntelliJ IDEA
+.idea/
+*.iml
