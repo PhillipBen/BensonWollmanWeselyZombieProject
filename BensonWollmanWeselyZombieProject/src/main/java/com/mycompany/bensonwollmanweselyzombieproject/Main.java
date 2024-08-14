@@ -72,6 +72,7 @@ public class Main {
                     survivorArrayList.get(x).attack_enemy(zombieArrayList.get(y));
                     if (!zombieArrayList.get(y).is_alive()) {
                         zombieArrayList.get(y).death_statement(survivorArrayList.get(x));
+                        System.out.println("with a " + survivorArrayList.get(x).getWeapon());
                         zombieArrayList.remove(y);
                     }
                 }
