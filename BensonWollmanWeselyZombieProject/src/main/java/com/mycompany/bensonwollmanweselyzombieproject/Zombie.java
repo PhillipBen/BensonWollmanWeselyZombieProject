@@ -13,6 +13,16 @@ public class Zombie extends Character{
         super(health, attack, type, id);
     }
 
+    @Override
+    public void take_damage(int damage) {
+        health -= damage;
+    }
+    @Override
+    public void death_statement(Character attacker) {
+        if (attacker instanceof Survivor) {
+            System.out.println(this.getType() + " " + this.getId() + " killed " + attacker.getType() + " " + attacker.getId());
+        }
+    }
     public Zombie(int id) {
         super(75, 10, "Zombie", id);
     }

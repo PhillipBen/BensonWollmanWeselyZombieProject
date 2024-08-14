@@ -5,8 +5,8 @@
 package com.mycompany.bensonwollmanweselyzombieproject;
 
 public class Soldier extends Survivor{
-    public Soldier(int id) {
+    public Soldier(int id, Weapon weapon) {
 
-        super(100, 10, "Soldier", id);
+        super(100, 10, "Soldier", id, weapon);
     }
 }

@@ -8,7 +8,7 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  *
  * @author Phillip
  */
-public class Character {
+public abstract class Character {
     /*
     * ints will work but opted for double if/when future versions of the game have more
     * complex attacking sitations where you'll need more granularity into health.
@@ -46,9 +46,7 @@ public class Character {
         // System.out.println(get_entity() + " took " + damage + " damage.");
     }
     
-    public void death_statement(Character attacker) {
-        System.out.println("" + attacker.getType() + " " + attacker.getId() + " killed " + this.type + " " + this.id);
-    }
+    public abstract void death_statement(Character attacker);
     
     /**
     * Check answer.
@@ -79,4 +77,6 @@ public class Character {
     public int getId() {
         return this.id;
     }
+
+    public abstract void take_damage(int damage);
 }

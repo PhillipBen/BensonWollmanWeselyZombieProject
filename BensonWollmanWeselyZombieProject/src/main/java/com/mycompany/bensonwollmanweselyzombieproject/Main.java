@@ -35,13 +35,16 @@ public class Main {
         
         //Survivors: Scientist, Civilian, Soldier
         for(int i = 0; i < numScientist; i++) {
-            survivorArrayList.add(new Scientist(i));
+            Weapon weapon = WeaponCache.getRandWeapon();
+            survivorArrayList.add(new Scientist(i, weapon));
         }
         for(int i = 0; i < numCivilian; i++) {
-            survivorArrayList.add(new Civilian(i));
+            Weapon weapon = WeaponCache.getRandWeapon();
+            survivorArrayList.add(new Civilian(i, weapon));
         }
         for(int i = 0; i < numSoldier; i++) {
-            survivorArrayList.add(new Soldier(i));
+            Weapon weapon = WeaponCache.getRandWeapon();
+            survivorArrayList.add(new Soldier(i, weapon));
         }
         
         //Zombies: CommonInfected, Tank
