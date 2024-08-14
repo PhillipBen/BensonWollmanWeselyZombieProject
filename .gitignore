@@ -1,3 +1,6 @@
+# IntelliJ IDEA
+.idea/
+*.iml
 /BensonWollmanWeselyZombieProject/target/
 /Benson2BWatch/target/
 /PhillipBenson2BWatch/target/
