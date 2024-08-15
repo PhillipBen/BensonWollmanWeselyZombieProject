@@ -9,4 +9,12 @@ public class Soldier extends Survivor{
 
         super(100, 10, "Soldier", id, weapon);
     }
+    @Override
+    public String toString() {
+        return String.format("Soldier{id=%d, weapon=%s}", getId(), getWeapon());
+    }
+
+    private Object getWeapon() {
+        return this.weapon;
+    }
 }

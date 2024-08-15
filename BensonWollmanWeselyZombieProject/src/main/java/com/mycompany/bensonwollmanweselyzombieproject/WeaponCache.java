@@ -15,4 +15,13 @@ public class WeaponCache {
         Random rand = new Random();
         return WEAPONS[rand.nextInt(WEAPONS.length)];
     }
+    public static Weapon[] generateWeapons(int totalSurvivors) {
+        Weapon[] weapons = new Weapon[totalSurvivors];
+
+        for (int i = 0; i < totalSurvivors; i++) {
+            weapons[i] = WeaponCache.getRandWeapon();
+        }
+
+        return weapons;
+    }
 }

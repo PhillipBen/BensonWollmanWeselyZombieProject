@@ -22,4 +22,8 @@ class Weapon {
     public double getAccuracy() {
         return accuracy;
     }
+    @Override
+    public String toString() {
+        return String.format("Weapon{name='%s', damage=%d, accuracy=%.2f}", name, damage, accuracy);
+    }
 }

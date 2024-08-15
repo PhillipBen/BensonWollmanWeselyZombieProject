@@ -7,6 +7,8 @@ package com.mycompany.bensonwollmanweselyzombieproject;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.mycompany.bensonwollmanweselyzombieproject.WeaponCache.generateWeapons;
+
 /**
  *
  * @author Phillip Chris Dustin
@@ -29,22 +31,33 @@ public class Main {
         int numScientist = randGen.nextInt(1,4);
         int numCivilian = randGen.nextInt(1,4);
         int numSoldier = randGen.nextInt(1,4);
+        int survivorTotal = numCivilian + numSoldier + numScientist;
+
+        Weapon[] weapons = generateWeapons(survivorTotal);
+        System.out.println("Weapons:");
+        for (Weapon weapon : weapons) {
+            System.out.println(weapon);
+        }
         
         int numCommonInfected = randGen.nextInt(1,4);
         int numTank = randGen.nextInt(1,4);
-        
+
+        int weaponCount = 0;
         //Survivors: Scientist, Civilian, Soldier
         for(int i = 0; i < numScientist; i++) {
-            Weapon weapon = WeaponCache.getRandWeapon();
+            Weapon weapon = weapons[weaponCount++];
             survivorArrayList.add(new Scientist(i, weapon));
+            System.out.println("Created: " + new Scientist(i, weapon));
         }
         for(int i = 0; i < numCivilian; i++) {
             Weapon weapon = WeaponCache.getRandWeapon();
             survivorArrayList.add(new Civilian(i, weapon));
+            System.out.println("Created: " + new Civilian(i, weapon));
         }
         for(int i = 0; i < numSoldier; i++) {
             Weapon weapon = WeaponCache.getRandWeapon();
             survivorArrayList.add(new Soldier(i, weapon));
+            System.out.println("Created: " + new Soldier(i, weapon));
         }
         
         //Zombies: CommonInfected, Tank

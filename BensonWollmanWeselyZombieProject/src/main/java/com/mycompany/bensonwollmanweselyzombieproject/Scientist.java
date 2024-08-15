@@ -13,4 +13,12 @@ public class Scientist extends Survivor{
 
         super(20, 2, "Scientist", id, weapon);
     }
+    @Override
+    public String toString() {
+        return String.format("Scientist{id=%d, weapon=%s}", getId(), getWeapon());
+    }
+
+    private Object getWeapon() {
+        return this.weapon;
+    }
 }
