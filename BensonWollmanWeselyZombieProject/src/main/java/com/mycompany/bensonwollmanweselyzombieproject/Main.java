@@ -50,12 +50,12 @@ public class Main {
             System.out.println("Created: " + new Scientist(i, weapon));
         }
         for(int i = 0; i < numCivilian; i++) {
-            Weapon weapon = WeaponCache.getRandWeapon();
+            Weapon weapon = weapons[weaponCount++];
             survivorArrayList.add(new Civilian(i, weapon));
             System.out.println("Created: " + new Civilian(i, weapon));
         }
         for(int i = 0; i < numSoldier; i++) {
-            Weapon weapon = WeaponCache.getRandWeapon();
+            Weapon weapon = weapons[weaponCount++];
             survivorArrayList.add(new Soldier(i, weapon));
             System.out.println("Created: " + new Soldier(i, weapon));
         }
