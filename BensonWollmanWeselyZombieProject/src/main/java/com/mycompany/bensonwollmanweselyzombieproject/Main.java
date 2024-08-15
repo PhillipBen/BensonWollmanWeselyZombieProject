@@ -101,7 +101,7 @@ public class Main {
                     survivor.attack_enemy(zombie);
                     if (!zombie.is_alive()) {
                         zombie.death_statement(survivor);
-                        zombieIterator.remove(); // Safely remove the zombie
+                        zombieIterator.remove();
                     }
                 }
             }
@@ -124,7 +124,7 @@ public class Main {
                     zombie.attack_enemy(survivor);
                     if (!survivor.is_alive()) {
                         survivor.death_statement(zombie);
-                        survivorIterator.remove(); // Safely remove the survivor
+                        survivorIterator.remove();
                     }
                 }
             }
