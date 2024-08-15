@@ -21,7 +21,7 @@ public class Survivor extends Character{
             enemy.take_damage(weapon.getDamage());
             System.out.println(type + " " + id + " hit " + enemy.getType() + " " + enemy.getId() + " with " + weapon.getName() + " for " + weapon.getDamage() + " damage.");
         } else {
-            enemy.take_damage(0.0);
+            // enemy.take_damage(0.0);
             System.out.println(type + " " + id + " missed " + enemy.getType() + " " + enemy.getId() + " with " + weapon.getName() + ".");
         }
     }

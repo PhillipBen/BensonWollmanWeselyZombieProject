@@ -11,7 +11,7 @@ package com.mycompany.bensonwollmanweselyzombieproject;
 public abstract class Character {
     /*
     * ints will work but opted for double if/when future versions of the game have more
-    * complex attacking sitations where you'll need more granularity into health.
+    * complex attacking situations where you'll need more granularity into health.
     */
     protected double health;
     protected double attack;
