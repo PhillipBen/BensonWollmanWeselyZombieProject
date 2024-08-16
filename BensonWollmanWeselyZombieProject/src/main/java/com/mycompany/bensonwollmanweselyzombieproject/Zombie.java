@@ -15,4 +15,9 @@ public class Zombie extends Character{
     public Zombie(int id) {
         super(75, 10, "Zombie", id);
     }
+    @Override
+    public void attack_enemy(Character enemy) {
+        enemy.take_damage(this.attack);
+        System.out.println(type + " " + id + " hit " + enemy.getType() + " " + enemy.getId() + " for " + this.attack + " damage.");
+    }
 }
