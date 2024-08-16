@@ -9,8 +9,16 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  * @author Phillip
  */
 public class Scientist extends Survivor{
-    public Scientist(int id) {
+    public Scientist(int id, Weapon weapon) {
 
-        super(20, 2, "Scientist", id);
+        super(20, 2, "Scientist", id, weapon);
     }
+    @Override
+    public String toString() {
+        return String.format("Scientist{id=%d, weapon=%s}", getId(), getWeapon());
+    }
+
+//    private Object getWeapon() {
+//        return this.weapon;
+//    }
 }

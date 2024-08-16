@@ -13,6 +13,19 @@ public class Zombie extends Character{
         super(health, attack, type, id);
     }
 
+    @Override
+    public void take_damage(int damage) {
+        health -= damage;
+    }
+//    @Override
+//    public void death_statement(Character attacker) {
+//        //Source: https://stackoverflow.com/questions/2856122/how-to-find-out-the-subclass-from-the-base-class-instance
+//        if (attacker instanceof Survivor) {
+//            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId() + " with "+ ((Survivor)attacker).getWeapon().getName());
+//            //+ ((Survivor)attacker).getWeapon().getName()
+//        }
+//    }
+
     public Zombie(int id) {
         super(75, 10, "Zombie", id);
     }

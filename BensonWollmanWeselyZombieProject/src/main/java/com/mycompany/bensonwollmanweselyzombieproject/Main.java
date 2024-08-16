@@ -6,6 +6,10 @@ package com.mycompany.bensonwollmanweselyzombieproject;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Iterator;
+import java.util.List;
+
+import static com.mycompany.bensonwollmanweselyzombieproject.WeaponCache.generateWeapons;
 
 /**
  *
@@ -29,19 +33,33 @@ public class Main {
         int numScientist = randGen.nextInt(1,4);
         int numCivilian = randGen.nextInt(1,4);
         int numSoldier = randGen.nextInt(1,4);
+        int survivorTotal = numCivilian + numSoldier + numScientist;
+
+        Weapon[] weapons = generateWeapons(survivorTotal);
+        System.out.println("Weapons:");
+        for (Weapon weapon : weapons) {
+            System.out.println(weapon);
+        }
         
         int numCommonInfected = randGen.nextInt(1,4);
         int numTank = randGen.nextInt(1,4);
-        
+
+        int weaponCount = 0;
         //Survivors: Scientist, Civilian, Soldier
         for(int i = 0; i < numScientist; i++) {
-            survivorArrayList.add(new Scientist(i));
+            Weapon weapon = weapons[weaponCount++];
+            survivorArrayList.add(new Scientist(i, weapon));
+            System.out.println("Created: " + new Scientist(i, weapon));
         }
         for(int i = 0; i < numCivilian; i++) {
-            survivorArrayList.add(new Civilian(i));
+            Weapon weapon = weapons[weaponCount++];
+            survivorArrayList.add(new Civilian(i, weapon));
+            System.out.println("Created: " + new Civilian(i, weapon));
         }
         for(int i = 0; i < numSoldier; i++) {
-            survivorArrayList.add(new Soldier(i));
+            Weapon weapon = weapons[weaponCount++];
+            survivorArrayList.add(new Soldier(i, weapon));
+            System.out.println("Created: " + new Soldier(i, weapon));
         }
         
         //Zombies: CommonInfected, Tank
@@ -67,24 +85,46 @@ public class Main {
             /**
              * Survivors attack, remove defeated zombies from zombieArrayList
              */
-            for (int x = 0; x < survivorArrayList.size(); x++) {
-                for (int y = 0; y < zombieArrayList.size(); y++) {
-                    survivorArrayList.get(x).attack_enemy(zombieArrayList.get(y));
-                    if (!zombieArrayList.get(y).is_alive()) {
-                        zombieArrayList.get(y).death_statement(survivorArrayList.get(x));
-                        zombieArrayList.remove(y);
+//            for (int x = 0; x < survivorArrayList.size(); x++) {
+//                for (int y = 0; y < zombieArrayList.size(); y++) {
+//                    survivorArrayList.get(x).attack_enemy(zombieArrayList.get(y));
+//                    if (!zombieArrayList.get(y).is_alive()) {
+//                        zombieArrayList.get(y).death_statement(survivorArrayList.get(x));
+//                        zombieArrayList.remove(y);
+//                    }
+//                }
+//            }
+            for (Survivor survivor : survivorArrayList) {
+                Iterator<Zombie> zombieIterator = zombieArrayList.iterator();
+                while (zombieIterator.hasNext()) {
+                    Zombie zombie = zombieIterator.next();
+                    survivor.attack_enemy(zombie);
+                    if (!zombie.is_alive()) {
+                        zombie.death_statement(survivor);
+                        zombieIterator.remove();
                     }
                 }
             }
             /**
              * Zombies attack, remove defeated survivors from survivorArrayList
              */
-            for (int x = 0; x < zombieArrayList.size(); x++) {
-                for (int y = 0; y < survivorArrayList.size(); y++) {
-                    zombieArrayList.get(x).attack_enemy(survivorArrayList.get(y));
-                    if (!survivorArrayList.get(y).is_alive()) {
-                        survivorArrayList.get(y).death_statement(zombieArrayList.get(x));
-                        survivorArrayList.remove(y);
+//            for (int x = 0; x < zombieArrayList.size(); x++) {
+//                for (int y = 0; y < survivorArrayList.size(); y++) {
+//                    zombieArrayList.get(x).attack_enemy(survivorArrayList.get(y));
+//                    if (!survivorArrayList.get(y).is_alive()) {
+//                        survivorArrayList.get(y).death_statement(zombieArrayList.get(x));
+//                        survivorArrayList.remove(y);
+//                    }
+//                }
+//            }
+            for (Zombie zombie : zombieArrayList) {
+                Iterator<Survivor> survivorIterator = survivorArrayList.iterator();
+                while (survivorIterator.hasNext()) {
+                    Survivor survivor = survivorIterator.next();
+                    zombie.attack_enemy(survivor);
+                    if (!survivor.is_alive()) {
+                        survivor.death_statement(zombie);
+                        survivorIterator.remove();
                     }
                 }
             }
