@@ -17,8 +17,4 @@ public class Scientist extends Survivor{
     public String toString() {
         return String.format("Scientist{id=%d, weapon=%s}", getId(), getWeapon());
     }
-
-//    private Object getWeapon() {
-//        return this.weapon;
-//    }
 }

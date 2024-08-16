@@ -46,10 +46,6 @@ public abstract class Character {
         System.out.println(get_entity() + " took " + damage + " damage.");
     }
 
-//    public void death_statement(Character attacker) {
-//
-//    }
-
     /**
     * Check answer.
     * @return True if health is greater than 0.
@@ -75,18 +71,18 @@ public abstract class Character {
     public String getType() {
         return this.type;
     }
-
     public int getId() {
         return this.id;
     }
 
-    public abstract void take_damage(int damage);
+//    public abstract void take_damage(int damage);
     public void death_statement(Character attacker) {
-        if (attacker instanceof Survivor) {
-            Survivor survivor = (Survivor) attacker;
-            System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + this.getType() + " " + this.getId() + " with " + survivor.getWeapon().getName());
+        if (attacker instanceof Survivor survivor) {
+            System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + this.getType() + " "
+                    + this.getId() + " with " + survivor.getWeapon().getName());
         } else if (attacker instanceof Zombie) {
-            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId());
+            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " "
+                    + this.getId());
         }
     }
 }

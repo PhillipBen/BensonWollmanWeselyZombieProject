@@ -17,11 +17,9 @@ public class WeaponCache {
     }
     public static Weapon[] generateWeapons(int totalSurvivors) {
         Weapon[] weapons = new Weapon[totalSurvivors];
-
         for (int i = 0; i < totalSurvivors; i++) {
             weapons[i] = WeaponCache.getRandWeapon();
         }
-
         return weapons;
     }
 }

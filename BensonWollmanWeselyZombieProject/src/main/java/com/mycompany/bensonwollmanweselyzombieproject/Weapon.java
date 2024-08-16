@@ -18,7 +18,6 @@ class Weapon {
     public double getDamage() {
         return damage;
     }
-
     public double getAccuracy() {
         return accuracy;
     }

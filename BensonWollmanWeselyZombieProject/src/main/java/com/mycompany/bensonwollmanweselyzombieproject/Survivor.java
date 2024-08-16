@@ -20,29 +20,20 @@ public class Survivor extends Character{
         Random rand = new Random();
         if (rand.nextDouble() <= weapon.getAccuracy()) {
             enemy.take_damage(weapon.getDamage());
-            System.out.println(type + " " + id + " hit " + enemy.getType() + " " + enemy.getId() + " with " + weapon.getName() + " for " + weapon.getDamage() + " damage.");
+            System.out.println(type + " " + id + " hit " + enemy.getType() + " " + enemy.getId() + " with "
+                    + weapon.getName() + " for " + weapon.getDamage() + " damage.");
         } else {
             // enemy.take_damage(0.0);
-            System.out.println(type + " " + id + " missed " + enemy.getType() + " " + enemy.getId() + " with " + weapon.getName() + ".");
+            System.out.println(type + " " + id + " missed " + enemy.getType() + " " + enemy.getId() + " with "
+                    + weapon.getName() + ".");
         }
     }
-    @Override
-    public void take_damage(int damage) {
-        health -= damage;
-    }
-
-//    public Weapon getWeapon() {
-//        this.weapon = weapon;
+//    @Override
+//    public void take_damage(int damage) {
+//        health -= damage;
 //    }
+
     public Weapon getWeapon() {
         return this.weapon;
     }
-
-//    @Override
-//    public void death_statement(Character attacker) {
-//        if (attacker instanceof Zombie) {
-//            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId());
-//        }
-//    }
-
 }
