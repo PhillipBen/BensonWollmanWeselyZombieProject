@@ -15,7 +15,7 @@ class Weapon {
         return name;
     }
 
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 

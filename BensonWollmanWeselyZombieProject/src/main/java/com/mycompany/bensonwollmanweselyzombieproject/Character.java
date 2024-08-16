@@ -45,9 +45,11 @@ public abstract class Character {
         this.health -= damage;
         System.out.println(get_entity() + " took " + damage + " damage.");
     }
-    
-    public abstract void death_statement(Character attacker);
-    
+
+//    public void death_statement(Character attacker) {
+//
+//    }
+
     /**
     * Check answer.
     * @return True if health is greater than 0.
@@ -79,4 +81,12 @@ public abstract class Character {
     }
 
     public abstract void take_damage(int damage);
+    public void death_statement(Character attacker) {
+        if (attacker instanceof Survivor) {
+            Survivor survivor = (Survivor) attacker;
+            System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + this.getType() + " " + this.getId() + " with " + survivor.getWeapon().getName());
+        } else if (attacker instanceof Zombie) {
+            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId());
+        }
+    }
 }

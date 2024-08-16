@@ -14,7 +14,7 @@ public class Civilian extends Survivor {
         return String.format("Civilian{id=%d, weapon=%s}", getId(), getWeapon());
     }
 
-    private Object getWeapon() {
-        return this.weapon;
-    }
+//    private Object getWeapon() {
+//        return this.weapon;
+//    }
 }

@@ -14,6 +14,7 @@ public class Survivor extends Character{
         super(health, attack, type, id);
         this.weapon = weapon;
     }
+
     @Override
     public void attack_enemy(Character enemy) {
         Random rand = new Random();
@@ -30,11 +31,18 @@ public class Survivor extends Character{
         health -= damage;
     }
 
-    @Override
-    public void death_statement(Character attacker) {
-        if (attacker instanceof Zombie) {
-            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId());
-        }
+//    public Weapon getWeapon() {
+//        this.weapon = weapon;
+//    }
+    public Weapon getWeapon() {
+        return this.weapon;
     }
+
+//    @Override
+//    public void death_statement(Character attacker) {
+//        if (attacker instanceof Zombie) {
+//            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId());
+//        }
+//    }
 
 }
