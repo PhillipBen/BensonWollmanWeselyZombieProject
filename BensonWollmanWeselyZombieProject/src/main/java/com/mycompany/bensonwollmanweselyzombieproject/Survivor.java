@@ -28,10 +28,6 @@ public class Survivor extends Character{
                     + weapon.getName() + ".");
         }
     }
-//    @Override
-//    public void take_damage(int damage) {
-//        health -= damage;
-//    }
 
     public Weapon getWeapon() {
         return this.weapon;
