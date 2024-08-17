@@ -83,28 +83,34 @@ public class Main {
             /**
              * Survivors attack, remove defeated zombies from zombieArrayList
              */
+            Iterator<Zombie> zombieIterator = zombieArrayList.iterator();
+            Zombie deffZombie = zombieIterator.next();
             for (Survivor survivor : survivorArrayList) {
-                Iterator<Zombie> zombieIterator = zombieArrayList.iterator();
-                while (zombieIterator.hasNext()) {
-                    Zombie zombie = zombieIterator.next();
-                    survivor.attack_enemy(zombie);
-                    if (!zombie.is_alive()) {
-                        zombie.death_statement(survivor);
-                        zombieIterator.remove();
+                survivor.attack_enemy(deffZombie);
+                if (!deffZombie.is_alive()) {
+                    deffZombie.death_statement(survivor);
+                    zombieIterator.remove();
+                    if (zombieIterator.hasNext()) {
+                        deffZombie = zombieIterator.next();
+                    }else{
+                        break; //Is this bad form?
                     }
                 }
             }
             /**
              * Zombies attack, remove defeated survivors from survivorArrayList
              */
+            Iterator<Survivor> survivorIterator = survivorArrayList.iterator();
+            Survivor deffSurvivor = survivorIterator.next();
             for (Zombie zombie : zombieArrayList) {
-                Iterator<Survivor> survivorIterator = survivorArrayList.iterator();
-                while (survivorIterator.hasNext()) {
-                    Survivor survivor = survivorIterator.next();
-                    zombie.attack_enemy(survivor);
-                    if (!survivor.is_alive()) {
-                        survivor.death_statement(zombie);
-                        survivorIterator.remove();
+                zombie.attack_enemy(deffSurvivor);
+                if (!deffSurvivor.is_alive()) {
+                    deffSurvivor.death_statement(zombie);
+                    survivorIterator.remove();
+                    if (survivorIterator.hasNext()) {
+                        deffSurvivor = survivorIterator.next();
+                    }else{
+                        break; //Is this bad form?
                     }
                 }
             }
