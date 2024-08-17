@@ -17,7 +17,7 @@ public class Main {
         ArrayList<Survivor> survivorArrayList = new ArrayList<>();
         ArrayList<Zombie> zombieArrayList = new ArrayList<>();
 
-        // Created an upper bound as to easily toggle the maximum for Scientists, Civilians, and Soldiers
+        // Created an upper bound as to easily toggle the maximum for survivors and zombies
         int upperBound = 4;
         
         //Simply for the initial print statements
@@ -28,8 +28,8 @@ public class Main {
 
         Weapon[] weapons = generateWeapons(survivorTotal);
         
-        int numCommonInfected = randGen.nextInt(1,4);
-        int numTank = randGen.nextInt(1,4);
+        int numCommonInfected = randGen.nextInt(1,upperBound);
+        int numTank = randGen.nextInt(1,upperBound);
 
         // weaponCount is used as a tracking variable as we loop through the array of weapon objects
         int weaponCount = 0;
