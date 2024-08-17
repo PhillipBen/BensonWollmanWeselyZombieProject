@@ -14,13 +14,17 @@ class Weapon {
     public String getName() {
         return name;
     }
-
     public double getDamage() {
         return damage;
     }
     public double getAccuracy() {
         return accuracy;
     }
+
+    /*
+     * This was originally used for testing battle logic with output, but that has
+     * been taken out for a more polished v3 release.
+     */
     @Override
     public String toString() {
         return String.format("Weapon{name='%s', damage=%d, accuracy=%.2f}", name, damage, accuracy);

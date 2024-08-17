@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.bensonwollmanweselyzombieproject;
 
 public class Soldier extends Survivor{
@@ -9,6 +5,10 @@ public class Soldier extends Survivor{
 
         super(100, 10, "Soldier", id, weapon);
     }
+    /*
+     * This was originally used for testing battle logic with output, but that has
+     * been taken out for a more polished v3 release.
+     */
     @Override
     public String toString() {
         return String.format("Soldier{id=%d, weapon=%s}", getId(), getWeapon());
