@@ -17,6 +17,7 @@ public abstract class Character {
     protected double attack;
     protected String type;
     protected int id;
+
     public Character(double health, double attack, String type, int id) {
         this.health = health;
         this.attack = attack;
@@ -36,7 +37,19 @@ public abstract class Character {
     public void attack_enemy(Character enemy) {
         enemy.take_damage(attack);
     }
-    
+    public String getType() {
+        return this.type;
+    }
+    public int getId() {
+        return this.id;
+    }
+    /**
+     * Check answer.
+     * @return True if health is greater than 0.
+     */
+    public boolean is_alive() {
+        return this.health > 0;
+    }
     /**
     * Check answer.
     * @param damage Double: The amount of damage being done.
@@ -46,19 +59,6 @@ public abstract class Character {
         System.out.println(get_entity() + " took " + damage + " damage.");
     }
 
-//    public void death_statement(Character attacker) {
-//
-//    }
-
-    /**
-    * Check answer.
-    * @return True if health is greater than 0.
-    */
-    public boolean is_alive() {
-        return this.health > 0;
-    }
-    
-    
     /**
     * Check answer.
     * @return String: Returns the entity type of this instance.
@@ -72,21 +72,14 @@ public abstract class Character {
             return "NULL";
         }
     }
-    public String getType() {
-        return this.type;
-    }
 
-    public int getId() {
-        return this.id;
-    }
-
-    public abstract void take_damage(int damage);
     public void death_statement(Character attacker) {
-        if (attacker instanceof Survivor) {
-            Survivor survivor = (Survivor) attacker;
-            System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + this.getType() + " " + this.getId() + " with " + survivor.getWeapon().getName());
+        if (attacker instanceof Survivor survivor) {
+            System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + this.getType() + " "
+                    + this.getId() + " with " + survivor.getWeapon().getName());
         } else if (attacker instanceof Zombie) {
-            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId());
+            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " "
+                    + this.getId());
         }
     }
 }
