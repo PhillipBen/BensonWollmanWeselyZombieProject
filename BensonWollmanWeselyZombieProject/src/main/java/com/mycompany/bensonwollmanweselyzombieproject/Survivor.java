@@ -3,41 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.bensonwollmanweselyzombieproject;
-
 import java.util.Random;
-
 /**
  *
  * @author Phillip
  */
 public class Survivor extends Character{
-    Weapon weapon = new Weapon();
-
-    public Survivor(double health, double attack, String type, int id) {
+    protected Weapon weapon;
+    public Survivor(double health, double attack, String type, int id, Weapon weapon) {
         super(health, attack, type, id);
-    }
-    public Survivor(int id) {
-        super(75, 10, "Survivor", id);
+        this.weapon = weapon;
     }
 
     @Override
     public void attack_enemy(Character enemy) {
         Random rand = new Random();
         if (rand.nextDouble() <= weapon.getAccuracy()) {
-            enemy.take_damage(weapon.getDamage()); 
+            System.out.println(type + " " + id + " hit " + enemy.getType() + " " + enemy.getId() + " with "
+                    + weapon.getName() + " for " + weapon.getDamage() + " damage.");
+            enemy.take_damage(weapon.getDamage());
         } else {
-            enemy.take_damage(0);
+            System.out.println(type + " " + id + " missed " + enemy.getType() + " " + enemy.getId() + " with "
+                    + weapon.getName() + ".");
+            // enemy.take_damage(0.0);
         }
     }
-    
-    @Override
-    public void death_statement(Character attacker) {
-        if (attacker instanceof Zombie) {
-            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " " + this.getId());
-        }
-    }
-    
+
     public Weapon getWeapon() {
-        return weapon;
+        return this.weapon;
     }
 }

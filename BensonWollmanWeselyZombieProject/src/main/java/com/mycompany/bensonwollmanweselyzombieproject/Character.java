@@ -8,15 +8,16 @@ package com.mycompany.bensonwollmanweselyzombieproject;
  *
  * @author Phillip
  */
-public class Character {
+public abstract class Character {
     /*
     * ints will work but opted for double if/when future versions of the game have more
-    * complex attacking sitations where you'll need more granularity into health.
+    * complex attacking situations where you'll need more granularity into health.
     */
     protected double health;
     protected double attack;
     protected String type;
     protected int id;
+
     public Character(double health, double attack, String type, int id) {
         this.health = health;
         this.attack = attack;
@@ -36,29 +37,28 @@ public class Character {
     public void attack_enemy(Character enemy) {
         enemy.take_damage(attack);
     }
-    
+    public String getType() {
+        return this.type;
+    }
+    public int getId() {
+        return this.id;
+    }
+    /**
+     * Check answer.
+     * @return True if health is greater than 0.
+     */
+    public boolean is_alive() {
+        return this.health > 0;
+    }
     /**
     * Check answer.
     * @param damage Double: The amount of damage being done.
     */
     public void take_damage(double damage) {
         this.health -= damage;
-        // System.out.println(get_entity() + " took " + damage + " damage.");
+        System.out.println(get_entity() + " took " + damage + " damage.");
     }
-    
-    public void death_statement(Character attacker) {
-        System.out.println("" + attacker.getType() + " " + attacker.getId() + " killed " + this.type + " " + this.id);
-    }
-    
-    /**
-    * Check answer.
-    * @return True if health is greater than 0.
-    */
-    public boolean is_alive() {
-        return this.health > 0;
-    }
-    
-    
+
     /**
     * Check answer.
     * @return String: Returns the entity type of this instance.
@@ -72,11 +72,14 @@ public class Character {
             return "NULL";
         }
     }
-    public String getType() {
-        return this.type;
-    }
 
-    public int getId() {
-        return this.id;
+    public void death_statement(Character attacker) {
+        if (attacker instanceof Survivor survivor) {
+            System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + this.getType() + " "
+                    + this.getId() + " with " + survivor.getWeapon().getName());
+        } else if (attacker instanceof Zombie) {
+            System.out.println(attacker.getType() + " " + attacker.getId() + " killed " + this.getType() + " "
+                    + this.getId());
+        }
     }
 }

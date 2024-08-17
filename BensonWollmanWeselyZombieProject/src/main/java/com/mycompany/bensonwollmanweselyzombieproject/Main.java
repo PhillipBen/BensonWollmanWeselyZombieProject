@@ -6,6 +6,9 @@ package com.mycompany.bensonwollmanweselyzombieproject;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Iterator;
+
+import static com.mycompany.bensonwollmanweselyzombieproject.WeaponCache.generateWeapons;
 
 /**
  *
@@ -29,19 +32,33 @@ public class Main {
         int numScientist = randGen.nextInt(1,4);
         int numCivilian = randGen.nextInt(1,4);
         int numSoldier = randGen.nextInt(1,4);
+        int survivorTotal = numCivilian + numSoldier + numScientist;
+
+        Weapon[] weapons = generateWeapons(survivorTotal);
+        System.out.println("Weapons:");
+        for (Weapon weapon : weapons) {
+            System.out.println(weapon);
+        }
         
         int numCommonInfected = randGen.nextInt(1,4);
         int numTank = randGen.nextInt(1,4);
-        
+        int weaponCount = 0;
+
         //Survivors: Scientist, Civilian, Soldier
         for(int i = 0; i < numScientist; i++) {
-            survivorArrayList.add(new Scientist(i));
+            Weapon weapon = weapons[weaponCount++];
+            survivorArrayList.add(new Scientist(i, weapon));
+            System.out.println("Created: " + new Scientist(i, weapon));
         }
         for(int i = 0; i < numCivilian; i++) {
-            survivorArrayList.add(new Civilian(i));
+            Weapon weapon = weapons[weaponCount++];
+            survivorArrayList.add(new Civilian(i, weapon));
+            System.out.println("Created: " + new Civilian(i, weapon));
         }
         for(int i = 0; i < numSoldier; i++) {
-            survivorArrayList.add(new Soldier(i));
+            Weapon weapon = weapons[weaponCount++];
+            survivorArrayList.add(new Soldier(i, weapon));
+            System.out.println("Created: " + new Soldier(i, weapon));
         }
         
         //Zombies: CommonInfected, Tank
@@ -51,15 +68,14 @@ public class Main {
         for(int i = 0; i < numTank; i++) {
             zombieArrayList.add(new Tank(i));
         }
-        
-        
+
         /**
          * Initial print statements displaying number of survivors and zombies to the user.
          */
+
         System.out.println("We have " + survivorArrayList.size() + " survivors trying to make it to safety (" + numScientist + " scientist, " + numCivilian + " civilian, " + numSoldier + " soldiers)");
         System.out.println("But there are " + zombieArrayList.size() + " zombies waiting for them (" + numCommonInfected + " common infected, " + numTank + " tanks)");
-        
-        
+
         /**
          * Battle
          */
@@ -67,24 +83,34 @@ public class Main {
             /**
              * Survivors attack, remove defeated zombies from zombieArrayList
              */
-            for (int x = 0; x < survivorArrayList.size(); x++) {
-                for (int y = 0; y < zombieArrayList.size(); y++) {
-                    survivorArrayList.get(x).attack_enemy(zombieArrayList.get(y));
-                    if (!zombieArrayList.get(y).is_alive()) {
-                        zombieArrayList.get(y).death_statement(survivorArrayList.get(x));
-                        zombieArrayList.remove(y);
+            Iterator<Zombie> zombieIterator = zombieArrayList.iterator();
+            Zombie deffZombie = zombieIterator.next();
+            for (Survivor survivor : survivorArrayList) {
+                survivor.attack_enemy(deffZombie);
+                if (!deffZombie.is_alive()) {
+                    deffZombie.death_statement(survivor);
+                    zombieIterator.remove();
+                    if (zombieIterator.hasNext()) {
+                        deffZombie = zombieIterator.next();
+                    }else{
+                        break; //Is this bad form?
                     }
                 }
             }
             /**
              * Zombies attack, remove defeated survivors from survivorArrayList
              */
-            for (int x = 0; x < zombieArrayList.size(); x++) {
-                for (int y = 0; y < survivorArrayList.size(); y++) {
-                    zombieArrayList.get(x).attack_enemy(survivorArrayList.get(y));
-                    if (!survivorArrayList.get(y).is_alive()) {
-                        survivorArrayList.get(y).death_statement(zombieArrayList.get(x));
-                        survivorArrayList.remove(y);
+            Iterator<Survivor> survivorIterator = survivorArrayList.iterator();
+            Survivor deffSurvivor = survivorIterator.next();
+            for (Zombie zombie : zombieArrayList) {
+                zombie.attack_enemy(deffSurvivor);
+                if (!deffSurvivor.is_alive()) {
+                    deffSurvivor.death_statement(zombie);
+                    survivorIterator.remove();
+                    if (survivorIterator.hasNext()) {
+                        deffSurvivor = survivorIterator.next();
+                    }else{
+                        break; //Is this bad form?
                     }
                 }
             }
