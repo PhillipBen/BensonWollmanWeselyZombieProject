@@ -1,5 +1,6 @@
 # Benson Wollman Wesely Final Project
 Zombie Survivor apocalypse
+- The goal of this project is to simulate a small game of zombies versus survivors. Survivors and zombies take turns attacking each other until one side wins. Survivors have lower base stats than zombies, but have help via weapons to even the match. Survivors and zombies come in different types to help create interesting matchups.
 
 # Notes
 - We made some decisions based on the hypothetical continuation of the project. One example is using a double for the attack and health. The thought behind this is that in a bigger "world" there could be more complicated battle scenarios where you'd need fractions.
