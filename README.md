@@ -9,3 +9,5 @@ Zombie Survivor apocalypse
   - We originally had 4 hardcoded as well but decided to use a variable for ease of change. This can be replicated with lower bound but decided against it.
 - Iterator:
   - We observed undesired behavior in our main battle logic when the loops were executing. The bug was identified as using .remove() on an array list. When that is called it removes the current (or front) element, and shifts left. We suspected that this was causing the loop to skip over characters. Our solution was to implement an iterator that has backend functionality to handle this.
+- Weapons:
+  - It was determined to make the Weapon class a singular class, unlike Character - Survivor - Scientist, due to the lack of distinct functionality for each individual weapon. Since all weapons had the same attributes and functions, then could all be broadly placed under the Weapon class.
