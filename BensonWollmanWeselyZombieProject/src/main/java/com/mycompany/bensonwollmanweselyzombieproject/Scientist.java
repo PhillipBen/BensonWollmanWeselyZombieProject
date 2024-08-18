@@ -2,7 +2,6 @@ package com.mycompany.bensonwollmanweselyzombieproject;
 
 public class Scientist extends Survivor{
     public Scientist(int id, Weapon weapon) {
-
         super(20, 2, "Scientist", id, weapon);
     }
     /*
