@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.bensonwollmanweselyzombieproject;
-
-/**
- *
- * @author Phillip
- */
 public abstract class Character {
     /*
-    * ints will work but opted for double if/when future versions of the game have more
-    * complex attacking situations where you'll need more granularity into health.
-    */
+     * ints will work but opted for double if/when future versions of the game have more
+     * complex attacking situations where you'll need more granularity into health.
+     */
     protected double health;
     protected double attack;
     protected String type;
@@ -43,24 +34,21 @@ public abstract class Character {
     public int getId() {
         return this.id;
     }
-    /**
-     * Check answer.
+    /*
      * @return True if health is greater than 0.
      */
     public boolean is_alive() {
         return this.health > 0;
     }
-    /**
-    * Check answer.
+    /*
     * @param damage Double: The amount of damage being done.
     */
     public void take_damage(double damage) {
         this.health -= damage;
-        System.out.println(get_entity() + " took " + damage + " damage.");
+        // System.out.println(get_entity() + " took " + damage + " damage.");
     }
 
-    /**
-    * Check answer.
+    /*
     * @return String: Returns the entity type of this instance.
     */
     public String get_entity() {
@@ -72,7 +60,10 @@ public abstract class Character {
             return "NULL";
         }
     }
-
+    /*
+     * Implemented logic within the death statement to print a weapon only if
+     * the attacker is a survivor.
+     */
     public void death_statement(Character attacker) {
         if (attacker instanceof Survivor survivor) {
             System.out.println(survivor.getType() + " " + survivor.getId() + " killed " + this.getType() + " "
